@@ -1,0 +1,34 @@
+program teste1;
+{teste de comentário em programa}
+types	
+	arraytype1 array real[5];
+	recordtype record 
+				string name, lastname;
+				integer number;
+				arraytype1 grades;
+				
+                    end
+	arraytype2 array recordtype [100];
+	
+variables
+	arraytype2 alunos; 
+	string lastname;
+	integer i, j, nroalunos;
+
+begin
+	read nroalunos;
+	set i = 1;
+	while i <= nroalunos do
+		read lastname;
+		set alunos[i].name = "joe";
+		set alunos[i].lastname = lastname;
+		read alunos[i].number;
+		set j = 1;
+		until j < 5 do
+			read alunos[i].grades[j];
+			write alunos[i].grades[j];
+			set j = j + 1
+		enduntil;
+		set i = i + 1
+      endwhile
+end.

@@ -1,0 +1,20 @@
+PROGRAM EvalFormula;
+	DECLARE
+		INTEGER a;
+	PROCEDURE FindFormula;
+		PARAMETERS
+			INTEGER x;
+			REAL y;
+		BEGIN
+			WHILE x ! 0 DO
+				IF x < 0 THEN SET y = 10 - 4.5*x
+					  ELSE SET y = 4.5*x+10
+				ENDIF;
+				WRITE y;
+				READ x;
+			END;
+	BEGIN
+		READ a;
+		CALL FindFormula(a,b);
+		WRITE b
+	END.

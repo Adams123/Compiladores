@@ -1,0 +1,7 @@
+PROGRAM TesteAspas
+	DECLARE
+		STRING B;
+	BEGIN;{
+		SET B = "OLAR
+		WRITE B;
+	END;

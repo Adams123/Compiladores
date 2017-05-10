@@ -1,0 +1,8 @@
+{Testa as regras 0,1,2,3,4,5,11,12,13,14,15,16,27,28,36,38,40,41,42}
+PROGRAM HelloWorld;
+	VARIABLES
+		STRING hello;
+	BEGIN
+		SET hello = "Hello World";
+		WRITE hello;
+	END.

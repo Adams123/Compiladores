@@ -1,0 +1,24 @@
+{Testa as regras 0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,27,28,29,31,33,34,35,36,37,38,40,41,42}
+PROGRAM Teste9;
+	TYPES
+		ArrayType ARRAY INTEGER[10];
+	VARIABLES
+		INTEGER aux;
+		INTEGER tam;
+		ArrayType vet;
+		INTEGER i;
+		INTEGER j;
+	BEGIN
+		SET tam=10;
+		SET i=tam-1;
+		SET j=0;
+		WHILE i>=1 DO
+			UNTIL j<i DO
+				IF vet[j]>vet[j+1] THEN
+					SET aux = vet[j];
+					SET vet[j]=vet[j+1];
+					SET vet[j+1]=aux;
+				ENDIF;
+			ENDUNTIL;
+		
+	END.

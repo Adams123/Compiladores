@@ -1,0 +1,304 @@
+0 - program
+1- <beginProgram>
+2 - <Header> 
+4 - <DeclSec> 
+5 - <TypeDeclSec> 
+6 - <TypeDecls> 
+7 - <TypeDecl> 
+8 - <TypeSpecification> 
+9 - <ArraySpecification> 
+14 - <DataType>
+11 - <VarDeclSec> 
+12- <VarDecls>
+13- <VarDecl>
+14 - <DataType>
+15 - <IdList>
+13- <VarDecl>
+14 - <DataType>
+15 - <IdList>
+13- <VarDecl>
+14 - <DataType>
+15 - <IdList>
+13- <VarDecl>
+14 - <DataType>
+15 - <IdList>
+13- <VarDecl>
+14 - <DataType>
+15 - <IdList>
+16 - <SubProgramDecls>
+3 - <Block> 
+27 -<statements>
+28 -<statement>
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+28 -<statement>
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+28 -<statement>
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+28 -<statement>
+33 - <Condition>
+
+34 - <CompoundCondition>
+
+35 - <SimpleCondition>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+27 -<statements>
+28 -<statement>
+33 - <Condition>
+
+34 - <CompoundCondition>
+
+35 - <SimpleCondition>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+27 -<statements>
+28 -<statement>
+33 - <Condition>
+
+34 - <CompoundCondition>
+
+35 - <SimpleCondition>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+31 -<argList>
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+37 - <AddOp>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+31 -<argList>
+27 -<statements>
+28 -<statement>
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+31 -<argList>
+28 -<statement>
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+37 - <AddOp>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+31 -<argList>
+28 -<statement>
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+37 - <AddOp>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+41 - <Factor>
+
+42 - <Variable>
+
+31 -<argList>
+29 -<elseClause>
+Encontrado " "end" "END "" na linha 24, coluna 9.
+Esperava-se um destes:
+    "call" 
+    "endwhile" 
+    "if" 
+    "set" 
+    "until" 
+    "while" 
+    "write" 
+    "read" 
+    ";" 
+    

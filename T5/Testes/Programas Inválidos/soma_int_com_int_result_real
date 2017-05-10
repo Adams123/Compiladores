@@ -1,0 +1,13 @@
+PROGRAM TESTE1;
+{teste de comentário em programa}
+
+BEGIN
+	INTEGER AI,BI,CI;
+	REAL AR,BR,CR;
+
+	SET AI=3; SET BI=3;
+	SET CR=AI+BI;
+	SET AR=3.2; SET BR=2.3;
+	SET CR=AR+BR;
+	SET CR=AR*BR;
+END.

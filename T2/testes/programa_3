@@ -1,0 +1,20 @@
+{Testa as regras 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,27,28,31,36,38,40,41,42}
+PROGRAM TESTE6;
+{teste de comentário em programa}
+TYPES	
+	ArrayType ARRAY INTEGER[5];
+	RecordType RECORD 
+				STRING Name, LastName;
+				ArrayType Grades;
+			END;
+VARIABLES 
+	RecordType StudentRecord;
+	STRING LastName;
+
+BEGIN
+	READ LastName;
+	SET StudentRecord.Name = "Joe";
+	SET StudentRecord.LastName = LastName;
+	READ StudentRecord.Grades[1];
+	WRITE StudentRecord.Grades[1];
+END.

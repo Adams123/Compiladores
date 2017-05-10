@@ -1,0 +1,6 @@
+﻿PROGRAM TESTE1;
+{teste de comentário em programa}
+
+BEGIN
+	
+END.

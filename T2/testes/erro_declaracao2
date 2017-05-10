@@ -1,0 +1,26 @@
+{Testa as regras 0,1,2,3,4,5,11,12,13,14,15,16,20,21,22,23,24,25,26,27,28,30,31,32,33,34,35,36,38,39,40,41,42,44}
+{Calculo de fatorial}
+PROGRAM TESTE8;
+FUNCTION fat RETURNS INTEGER;
+PARAMETERS
+	INTEGER a;
+VARIABLES
+	INTEGER i;
+	REAL result;
+	IF a;
+BEGIN
+	SET a = 1;
+	WHILE i > 2 do
+		SET a = a * i;
+		SET i = i - 1;
+	ENDWHILE;
+	return (a)
+END;
+
+{main}		 
+
+BEGIN
+	READ a;
+	CALL fat(a);
+	WRITE a;
+END.

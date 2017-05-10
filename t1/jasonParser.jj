@@ -1,0 +1,192 @@
+options{
+  IGNORE_CASE = true;  /* IN CASE OF INSENSITIVE LANGUAGE */
+	LOOKAHEAD   = 2;     /* INSERÇÃO DE LOOKAHEAD GLOBAL */
+	STATIC 		= false; /* MÉTODOS GERADOS. TRUE (DEFAULT): SERAO ESTATICOS, FALSE: NAO ESTATICOS */
+	FORCE_LA_CHECK = true;
+}
+PARSER_BEGIN(jasonParser)
+import java.io.*;
+
+public class jasonParser {
+	public static void main(String[] args) throws ParseException, TokenMgrError {
+		jasonParser t=null;
+		try {
+			if (args.length == 0) {
+				t = new jasonParser(System.in);
+			} else if (args.length == 1) {
+				// lê do arquivo cujo nome esta em args[0]
+
+					FileInputStream fis = new FileInputStream(args[0]);
+					t = new jasonParser(fis);
+			} else {
+			// Formato de entrada invalido
+			System.out.println("Formato de entrada invalido.");
+			return;
+		}
+		t.start();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} catch (Error e){
+			System.out.println(e.getMessage());
+		}
+
+	}
+}
+PARSER_END(jasonParser)
+
+/*SKIP: Tokens que devem ser ignorados */
+ SKIP:
+ { " "| "\t"| "\r"| "\f" | "\n" | "{" : WithinComment }
+
+<WithinComment> SKIP : { "}" : DEFAULT }
+<WithinComment> MORE : { <~[]> }
+
+TOKEN : /* RESERVED WORDS */
+{
+ < VAR : "var" >
+ | <ARRAY: "array">
+ | <BEGIN: "begin">
+ | <CALL: "call">
+ | <DO: "do">
+ | <ELSE: "else">
+ | <END: "end">
+ | <ENDIF: "endif">
+ | <ENDUNTIL: "enduntil">
+ | <ENDWHILE: "endwhile">
+ | <FUNCTION: "function">
+ | <IF: "if">
+ | <INTEGER: "integer">
+ | <PARAMETERS: "parameters">
+ | <PROCEDURE: "procedure">
+ | <RETURNS: "returns">
+ | <RETURN: "return">
+ | <PROGRAM: "program">
+ | <REAL: "real">
+ | <RECORD: "record">
+ | <SET: "set">
+ | <STRING: "string">
+ | <THEN: "then">
+ | <TYPES: "types">
+ | <UNTIL: "until">
+ | <VARIABLES: "variables">
+ | <WHILE: "while">
+ | <WRITE: "write">
+}
+
+TOKEN: // Operadores logicos
+{
+		<OR: "|">
+		| <AND: "&">
+		| <NOT: "!">
+}
+
+TOKEN: // Operadores de comparações
+{
+		<COMPARE: "=">
+		| <LEQUAL: "<=">
+		| <HEQUAL: ">=">
+		| <DIFF: "=!">
+		| <LESS: "<">
+		| <HIGHER: ">">
+}
+
+TOKEN: // Operadores soma e subtração
+{
+		<SUM: "+">
+		| <SUB: "-">
+}
+
+TOKEN: // Operadores de multiplicação, divisão, modulo e potencia
+{
+		<MUL: "*">
+		| <DIV: "/">
+}
+
+TOKEN: //
+{
+		<LBAR: "(">
+		| <RBAR: ")">
+		| <LBRA: "[">
+		| <RBRA: "]">
+		| <DOT: ".">
+		| <COM: ",">
+		| <ASPD: "\"">
+		| <REVBAR: "\\">
+}
+
+TOKEN: // Fim de linha
+{
+		<EOL: (";" | "\n")>
+}
+
+
+TOKEN: // Identificadores
+{
+		<#DIGIT: ["0" - "9"]>
+		| <NUM: (<DIGIT>)+(<DOT>(<DIGIT>)*)*>
+		| <#LETTER: ["a" - "z", "A" - "Z"]>
+		| <ID: (<LETTER>)(<LETTER> | <DIGIT>)*>
+		| <STR: <ASPD>(<LETTER> | " " | "," | "." | "-" | "_" | ";" | ":"| "(" | ")" | "*" | "/" | "\n" | "\r" |<DIGIT>)*<ASPD>>
+}
+
+
+/* GRAMMAR START */
+void start():
+{Token t;}
+{
+	(
+  t=<VAR> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<ARRAY> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<BEGIN> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<CALL> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<DO> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<ELSE> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<END> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<ENDIF> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<ENDUNTIL> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<ENDWHILE> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<FUNCTION> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<IF> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<INTEGER> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<PARAMETERS> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<PROCEDURE> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<RETURN> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<RETURNS> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<PROGRAM> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<REAL> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<RECORD> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<SET> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<STRING> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<THEN> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<TYPES> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<UNTIL> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<VARIABLES> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<WHILE> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<WRITE> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+  | t=<OR> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<AND> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<NOT> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	  - " + t.image);}
+	| t=<COMPARE> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<LEQUAL> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<HEQUAL> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<DIFF> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "		- " + t.image);}
+	| t=<LESS> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<HIGHER> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<SUM> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<SUB> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<MUL> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<DIV> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<NUM> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<ID> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<STR> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<LBAR> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<RBAR> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<LBRA> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<RBRA> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<DOT> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<COM> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<ASPD> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+	| t=<EOL> {System.out.println("@(" + t.beginLine + "," + t.beginColumn + ")" + "    " + tokenImage[t.kind] + "	- " + t.image);}
+)*
+	<EOF> {System.out.println("Final do arquivo");}
+}

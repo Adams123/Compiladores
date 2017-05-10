@@ -1,0 +1,43 @@
+﻿program teste2;
+{teste de comentário em programa}
+variables 
+	integer a;
+	real b, n1, n2, n3, mediaalunos;
+	
+procedure findformula; 
+parameters
+integer x;
+real y;
+	begin
+		while x ! 0 do
+		if x<0 then set y = 10 - 4.5 * x
+		else set y = 4.5 * -x + 10
+		endif;
+		write y;
+		read x
+		endwhile
+	end;
+	
+function media returns real;
+parameters
+integer a;
+integer b;
+integer c;
+variables 
+real sum, average;
+
+begin
+set sum = a+b+c;
+set average=sum/3;
+return ((average \ sum) & (~average * sum))
+end;
+
+{main}		 
+
+begin
+	read a;
+	call findformula(a,b);
+	write b;
+	read n1;read n2;read n3;
+	set mediaalunos media(n1,n2,n3)
+end.

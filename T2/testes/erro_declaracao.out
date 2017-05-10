@@ -1,0 +1,13 @@
+0 - program
+1- <beginProgram>
+2 - <Header> 
+4 - <DeclSec> 
+5 - <TypeDeclSec> 
+6 - <TypeDecls> 
+7 - <TypeDecl> 
+8 - <TypeSpecification> 
+Encontrado " "integer" "INTEGER "" na linha 4, coluna 27.
+Esperava-se um destes:
+    "array" 
+    "record" 
+    

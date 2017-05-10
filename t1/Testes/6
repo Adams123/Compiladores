@@ -1,0 +1,8 @@
+
+PROGRAM 2test;
+	DECLARE
+		STRING B;
+	BEIGN;
+		SET B = "N pode começar com digito;
+		WRITE B;
+	END;

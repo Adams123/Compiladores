@@ -1,0 +1,38 @@
+0 - program
+1- <beginProgram>
+2 - <Header> 
+4 - <DeclSec> 
+5 - <TypeDeclSec> 
+11 - <VarDeclSec> 
+16 - <SubProgramDecls>
+24 -<functionDecl>
+25 -<functionHeader>
+14 - <DataType>
+20 - <SubProgramDeclSec>
+21 -<ParamDeclSec>
+22 -<ParamDecls>
+23 -<paramDecl>
+14 - <DataType>
+4 - <DeclSec> 
+5 - <TypeDeclSec> 
+11 - <VarDeclSec> 
+12- <VarDecls>
+13- <VarDecl>
+14 - <DataType>
+15 - <IdList>
+13- <VarDecl>
+14 - <DataType>
+15 - <IdList>
+16 - <SubProgramDecls>
+26 -<functionBlock>
+Encontrado " "if" "IF "" na linha 10, coluna 9.
+Esperava-se um destes:
+    "begin" 
+    "function" 
+    "integer" 
+    "procedure" 
+    "real" 
+    "string" 
+    "variables" 
+    <ID> 
+    

@@ -1,0 +1,24 @@
+0 - program
+1- <beginProgram>
+2 - <Header> 
+4 - <DeclSec> 
+5 - <TypeDeclSec> 
+11 - <VarDeclSec> 
+12- <VarDecls>
+13- <VarDecl>
+14 - <DataType>
+15 - <IdList>
+16 - <SubProgramDecls>
+3 - <Block> 
+27 -<statements>
+28 -<statement>
+28 -<statement>
+42 - <Variable>
+
+36 - <Expression>
+
+38 - <Term>
+
+40 - <Unary>
+
+Erro lexico na linha 6, coluna 31. String em aberto ou possui quebra de linha. Favor fechar ou deixar em uma linha apenas.

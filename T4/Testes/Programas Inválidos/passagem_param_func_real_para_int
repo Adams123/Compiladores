@@ -1,0 +1,30 @@
+PROGRAM TESTE2;
+{teste de comentário em programa}
+VARIABLES 
+	INTEGER a;
+	REAL b, N1, N2, N3, MediaAlunos;
+
+FUNCTION media RETURNS REAL;
+	PARAMETERS
+	INTEGER a;
+	INTEGER b;
+	VAR INTEGER c;
+
+	TYPES Arraytype ARRAY INTEGER [5];
+	VARIABLES 
+	REAL SUM, AVERAGE;
+	ArrayType Vet;
+
+	BEGIN
+		SET Sum = a+b+c;
+		SET AVERAGE=SUM/3;
+		SET Vet[1] = 10;
+		RETURN (AVERAGE)
+	END;
+
+{main}		 
+
+BEGIN
+	READ N1;READ N2;READ N3;
+	SET MediaAlunos = media(N1,N2,N3)
+END.

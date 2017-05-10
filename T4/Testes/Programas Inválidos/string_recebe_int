@@ -1,0 +1,7 @@
+PROGRAM TESTE1;
+{teste de comentário em programa}
+
+BEGIN
+	STRING s;
+	s=3;
+END.

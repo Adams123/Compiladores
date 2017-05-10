@@ -1,0 +1,34 @@
+﻿PROGRAM TESTE1;
+{teste de comentário em programa}
+TYPES	
+	ArrayType1 ARRAY REAL[5];
+	RecordType RECORD 
+				STRING Name, LastName;
+				INTEGER Number;
+				ArrayType1 Grades;
+				
+                    END;
+	ArrayType2 ARRAY RecordType [100];
+	
+VARIABLES
+	ArrayType2 Alunos; 
+	STRING LastName;
+	INTEGER I, J, NroAlunos;
+
+BEGIN
+	READ NroAlunos;
+	SET I = 1;
+	wHILE I <= NroAlunos do
+		READ LastName;
+		SET Alunos[I].Name = "Joe";
+		SET Alunos[I].LastName = LastName;
+		READ Alunos[I].Number;
+		SET J = 1;
+		UNTIL J < 5 DO
+			READ Alunos[I].Grades[J];
+			WRITE Alunos[I].Grades[J];
+			SET J = J + 1
+		ENDUNTIL;
+		SET I = I + 1
+      ENDWHILE
+END.

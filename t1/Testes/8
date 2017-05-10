@@ -1,0 +1,9 @@
+PROGRAM HelloWorld;
+	VARIABLES
+		STRING hello;
+		{CARACTER ESTRANHO A SEGUIR {Com comment dentro de comment}
+		_;
+	BEGIN
+		SET hello = "Hello World";
+		WRITE hello
+	END.

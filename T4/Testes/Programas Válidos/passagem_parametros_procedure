@@ -1,0 +1,35 @@
+PROGRAM TESTE2;
+{teste de comentário em programa}
+VARIABLES 
+	INTEGER a;
+	REAL b, N1, N2, N3, MediaAlunos;
+
+
+	
+PROCEDURE FindFormula; 
+PARAMETERS
+INTEGER x;
+REAL y;
+	
+
+BEGIN
+		WHILE X ! 0 DO
+		IF X<0 THEN SET y = 10 - 4.5 * x
+		ELSE SET y = 4.5 * -x + 10
+		ENDIF;
+		WRITE y;
+		READ x;
+		READ N1;READ N2;READ N3;
+		SET MediaAlunos = N1+N2+N3/3
+		ENDWHILE
+END;
+	
+
+
+{main}		 
+
+BEGIN
+	READ a;
+	CALL FindFormula(a,b);
+	WRITE b		
+END.

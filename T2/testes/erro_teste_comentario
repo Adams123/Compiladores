@@ -1,0 +1,8 @@
+{Verifica comentario em aberto(acusa erro)}
+PROGRAM VaiDarErrado;
+	VARIABLES
+		INTEGER A;
+	BEGIN;
+		READ A; {ABRINDO SEM FECHAR CHAVES
+		WRITE A;
+	END;

@@ -1,0 +1,21 @@
+PROGRAM EX1;
+{Programa sem procedimentos/funções}
+
+VARIABLES 
+	INTEGER n,k;
+	INTEGER f1,f2,f3;
+
+BEGIN
+	READ n;
+	SET f1 = 0;
+	SET f2 = 1;
+	SET f3 = 1;
+	wHILE k <= n DO
+		SET f3 = f1 + f2
+		SET f1 = f2
+		SET f2 = f3
+		SET k = k + 1
+    ENDWHILE
+	WRITE n;
+	WRITE f1;
+END.

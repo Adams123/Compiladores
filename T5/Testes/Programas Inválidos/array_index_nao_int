@@ -1,0 +1,11 @@
+PROGRAM TESTE1;
+{teste de comentário em programa}
+VARIABLES 
+	STRING a;
+
+BEGIN
+	SET a="1";
+	TYPES Arraytype ARRAY INTEGER [5];
+	Arraytype vet;
+	SET Vet[a]=2;
+END.

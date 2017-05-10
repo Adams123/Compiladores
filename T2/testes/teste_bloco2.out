@@ -1,0 +1,11 @@
+0 - program
+1- <beginProgram>
+2 - <Header> 
+4 - <DeclSec> 
+5 - <TypeDeclSec> 
+11 - <VarDeclSec> 
+16 - <SubProgramDecls>
+3 - <Block> 
+27 -<statements>
+28 -<statement>
+SUCESSO

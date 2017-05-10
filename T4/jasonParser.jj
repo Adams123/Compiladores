@@ -1,0 +1,438 @@
+options{
+ IGNORE_CASE = true; /* IN CASE OF INSENSITIVE LANGUAGE */
+	LOOKAHEAD  = 1;     /* INSERÇÃO DE LOOKAHEAD GLOBAL */
+	STATIC 		= false; /* MÉTODOS GERADOS. TRUE (DEFAULT): SERAO ESTATICOS, FALSE: NAO ESTATICOS */
+	FORCE_LA_CHECK = true;
+}
+PARSER_BEGIN(jasonParser)
+import java.io.*;
+
+public class jasonParser {
+	public static void main(String[] args) throws ParseException, TokenMgrError {
+		jasonParser t=null;
+		try {
+			if (args.length == 0) {
+				t = new jasonParser(System.in);
+			} else if (args.length == 1) {
+				// lê do arquivo cujo nome esta em args[0]
+
+					FileInputStream fis = new FileInputStream(args[0]);
+					t = new jasonParser(fis);
+			} else {
+			// Formato de entrada invalido
+			System.out.println("Formato de entrada invalido.");
+			return;
+		}
+		t.start();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} catch (Error e){
+			System.out.println(e.getMessage());
+		}
+
+	}
+}
+PARSER_END(jasonParser)
+
+/*SKIP: Tokens que devem ser ignorados */
+ SKIP:
+ { " "| "\t"| "\r"| "\f" | "\n" | "{" : WithinComment }
+
+<WithinComment> SKIP : { "}" : DEFAULT }
+<WithinComment> MORE : { <~[]> }
+
+TOKEN : /* RESERVED WORDS */
+{
+ < VAR : "var" >
+ | <ARRAY: "array">
+ | <BEGIN: "begin">
+ | <CALL: "call">
+ | <DO: "do">
+ | <ELSE: "else">
+ | <END: "end">
+ | <ENDIF: "endif">
+ | <ENDUNTIL: "enduntil">
+ | <ENDWHILE: "endwhile">
+ | <FUNCTION: "function">
+ | <IF: "if">
+ | <INTEGER: "integer">
+ | <PARAMETERS: "parameters">
+ | <PROCEDURE: "procedure">
+ | <RETURNS: "returns">
+ | <RETURN: "return">
+ | <PROGRAM: "program">
+ | <REAL: "real">
+ | <RECORD: "record">
+ | <SET: "set">
+ | <STRING: "string">
+ | <THEN: "then">
+ | <TYPES: "types">
+ | <UNTIL: "until">
+ | <VARIABLES: "variables">
+ | <WHILE: "while">
+ | <WRITE: "write">
+ | <READ: "read">
+ | <PARAMETER: "parameter">
+}
+
+TOKEN: // Operadores logicos
+{
+		<OR: "|">
+		| <AND: "&">
+		| <NOT: "~">
+}
+
+TOKEN: // Operadores de comparações
+{
+		<COMPARE: "=">
+		| <LEQUAL: "<=">
+		| <HEQUAL: ">=">
+		| <LESS: "<">
+		| <HIGHER: ">">
+		| <DIFF: "!">
+}
+
+TOKEN: // Operadores soma e subtração
+{
+		<SUM: "+">
+		| <SUB: "-">
+}
+
+TOKEN: // Operadores de multiplicação, divisão, modulo e potencia
+{
+		<MUL: "*">
+		| <DIV: "/">
+}
+
+TOKEN: //
+{
+		<LBAR: "(">
+		| <RBAR: ")">
+		| <LBRA: "[">
+		| <RBRA: "]">
+		| <DOT: ".">
+		| <COM: ",">
+		| <REVBAR: "\\">
+}
+
+TOKEN: // Fim de linha
+{
+	<EOL: ";">
+}
+
+
+TOKEN: // Identificadores
+{	
+		<INT: (["0" - "9"])+>
+		| <FLOAT: (["0" - "9"])+(<DOT>(["0" - "9"])+)*>
+		| <ID: (["a" - "z", "A" - "Z"])(["a" - "z", "A" - "Z"] | ["0" - "9"])*>
+}
+
+MORE :
+{
+  "\"" : WithinString
+}
+
+<WithinString> TOKEN :
+{
+  <STR: "\""> : DEFAULT
+}
+
+<WithinString> MORE :
+{
+  <~["\n","\r"]>
+}
+
+
+/* GRAMMAR START */
+void start():
+{Token t;}
+{
+	{System.out.println("0 - program");}
+	program()
+	t=<EOF> {System.out.println("SUCESSO");}
+}
+
+//--------------LUCAS
+void program():{}
+{
+	{System.out.println("1- <beginProgram>");}
+	header() declSec() block() <DOT> 
+}
+
+void header():{}
+{
+	{ System.out.println("2 - <Header> ");}
+	<PROGRAM> 
+	<ID> <EOL>
+}
+
+void block():{}
+{
+	{ System.out.println("3 - <Block> ");}
+	<BEGIN>  statements() <END> 
+}
+
+void declSec():{}
+{
+	{ System.out.println("4 - <DeclSec> ");}
+	typeDeclSec() varDeclSec() subProgramDecls()
+}
+
+void typeDeclSec():{}
+{
+	{ System.out.println("5 - <TypeDeclSec> ");}
+	[<TYPES>  typeDecls()] 
+}
+
+
+void typeDecls():{}
+{
+	{ System.out.println("6 - <TypeDecls> ");}
+	(typeDecl())+
+}
+
+void typeDecl():{}
+{
+	{ System.out.println("7 - <TypeDecl> ");}
+	<ID> typeSpecification()
+}
+
+void typeSpecification():{}
+{
+	{ System.out.println("8 - <TypeSpecification> ");}
+	(arraySpecification() | recordSpecification())
+}
+
+void arraySpecification():{}
+{
+	{ System.out.println("9 - <ArraySpecification> ");}
+	<ARRAY>  dataType() <LBRA> <INT> <RBRA> <EOL>
+}
+
+void recordSpecification():{}
+{
+	{ System.out.println("10 - <RecordSpecification> ");}
+	<RECORD>  varDecls() <END>  <EOL>
+}
+
+void varDeclSec():{}
+{
+	{ System.out.println("11 - <VarDeclSec> ");}
+	(<VARIABLES> varDecls())*
+}
+
+void varDecls():{}
+{
+	{System.out.println("12- <VarDecls>");}
+	(varDecl())+
+}
+
+//-----------FIM LUCAS
+//-----------ANA
+
+void varDecl():{}
+{
+	{System.out.println("13- <VarDecl>");}
+	dataType()idList()<EOL>
+}
+
+void  dataType():{}
+{
+	{System.out.println("14 - <DataType>");}
+	(<REAL>|<INTEGER>|<ID>|<STRING>)
+}
+void  idList():{}
+{
+	{System.out.println("15 - <IdList>");}
+	<ID>(<COM> <ID>)*
+}
+void  subProgramDecls():{}
+{
+	{System.out.println("16 - <SubProgramDecls>");}
+	(subProgramDecl())*
+}
+void  subProgramDecl():{}
+{
+	{System.out.println("17 - <SubProgramDecl>");}
+	procDecl()|functionDecl()
+}
+void procDecl():{}
+{
+	{System.out.println("18 - <ProcDecl>");}
+	procHeader() subProgramDeclSec() block() <EOL>
+}
+void procHeader():{}
+{
+	{System.out.println("19 - <ProcHeader>");}
+	<PROCEDURE> <ID><EOL>
+}
+void subProgramDeclSec():{}
+{
+	{System.out.println("20 - <SubProgramDeclSec>");}
+	paramDeclSec()declSec()
+}
+void paramDeclSec():{}
+{
+	{System.out.println("21 -<ParamDeclSec>");}
+	[<PARAMETERS>  paramDecls()]
+}
+void paramDecls():{}
+{
+	{System.out.println("22 -<ParamDecls>");}
+	(paramDecl())+
+}
+
+//--------FIM ANA
+
+//-------------- ADAMS 
+
+void paramDecl():{}
+{
+	{System.out.println("23 -<paramDecl>");}
+	dataType() <ID> <EOL> | <VAR> dataType() <ID> <EOL>
+}
+void functionDecl():{}
+{
+	{System.out.println("24 -<functionDecl>");}
+	functionHeader() subProgramDeclSec() functionBlock() <EOL>
+} 
+void functionHeader():{}
+{
+	{System.out.println("25 -<functionHeader>");}
+	<FUNCTION> <ID> <RETURNS> dataType() <EOL>
+} 
+void functionBlock():{}
+{
+	{System.out.println("26 -<functionBlock>");}
+	<BEGIN> (LOOKAHEAD(2) statement() <EOL>)+ returnStatement() <END>
+}
+
+void statements():{}
+{
+	{System.out.println("27 -<statements>");}
+	statement() (<EOL> statement())*
+}
+void statement():{}
+{
+	{System.out.println("28 -<statement>");}
+	[(<READ> | <WRITE>) <ID> variable()
+		|<SET> <ID> variable() <COMPARE> expression()
+		| <IF> condition() <THEN> statements() elseClause()
+		| <WHILE> condition() <DO> statements() <ENDWHILE>
+		| <UNTIL> condition() <DO> statements() <ENDUNTIL>
+		| <CALL> <ID> argList()]
+} 
+void elseClause():{}
+{
+	{System.out.println("29 -<elseClause>");}
+	[<ELSE> statements()] <ENDIF>
+} 
+void returnStatement():{}
+{
+	{System.out.println("30 -<returnStatement>");}
+	<RETURN> <LBAR>condition() <RBAR>
+} 
+void argList():{}
+{
+	{System.out.println("31 -<argList>");}
+	[<LBAR> arguments() <RBAR>]
+} 
+void arguments():{}
+{
+	{System.out.println("32 -<arguments>");}
+	argument() (<COM> argument())*
+} 
+
+//---------- FIM ADAMS
+
+//---------- QUIABO
+
+void condition():
+{}
+{
+	{ System.out.println("33 - <Condition>\n"); }
+	compoundCondition() (<REVBAR> compoundCondition())*
+}
+
+void compoundCondition():
+{}
+{
+	{ System.out.println("34 - <CompoundCondition>\n"); }
+	simpleCondition() (<AND> simpleCondition())*
+}
+
+void simpleCondition():
+{}
+{
+	{ System.out.println("35 - <SimpleCondition>\n"); }
+	expression() [relOp() expression()]
+}
+
+void expression():
+{}
+{
+	{ System.out.println("36 - <Expression>\n"); }
+	term() (addOp() term())*
+}
+
+void addOp():
+{}
+{
+	{ System.out.println("37 - <AddOp>\n"); }
+	<SUM> | <SUB>
+}
+
+void term():
+{}
+{
+	{ System.out.println("38 - <Term>\n"); }
+	unary() (mulOp() unary())*
+}
+
+void mulOp():
+{}
+{
+	{ System.out.println("39 - <MulOp>\n"); }
+	<MUL> | <DIV>
+}
+
+void unary():
+{}
+{
+	{ System.out.println("40 - <Unary>\n"); }
+	(<SUM> | <SUB>) unary() | factor()
+}
+
+void factor():
+{}
+{
+	{ System.out.println("41 - <Factor>\n"); }
+	<ID> argList() | <INT> | <FLOAT> | <STR> | <NOT> factor() | <LBAR> condition() <RBAR> | variable()
+}
+
+void variable():
+{}
+{
+	{ System.out.println("42 - <Variable>\n"); }
+	[<LBRA> expression() <RBRA>](<DOT> <ID> [<LBRA> expression() <RBRA>])*
+}
+
+void relOp():
+{}
+{
+	{ System.out.println("43 - <RelOp>\n"); }
+	<COMPARE> | <NOT> | <HIGHER> | <LESS> | <LEQUAL> | <HEQUAL> | <DIFF>
+}
+
+void argument():
+{}
+{
+	{ System.out.println("44 - <Argument>\n"); }
+	condition()
+}
+
+//---------- FIM QUIABO
+
+
+

@@ -1,0 +1,4 @@
+{Testa as regras 0,1,2,3,4,5,11,16,27,28}
+{teste bloco aberto}
+PROGRAM Teste13;
+BEGIN

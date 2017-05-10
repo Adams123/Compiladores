@@ -1,0 +1,8 @@
+PROGRAM TESTE1;
+{teste de comentário em programa}
+
+BEGIN
+	TYPES Arraytype ARRAY INTEGER [5];
+	Arraytype vet;
+	SET Vet[1]=2.5;
+END.

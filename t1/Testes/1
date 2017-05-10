@@ -1,0 +1,7 @@
+PROGRAM HelloWorld;
+	VARIABLES
+		STRING hello;
+	BEGIN
+		SET hello = "Hello World";
+		WRITE hello
+	END.

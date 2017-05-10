@@ -1,0 +1,49 @@
+﻿PROGRAM TESTE2;
+{teste de comentário em programa}
+VARIABLES 
+	INTEGER a;
+	REAL b, N1, N2, N3, MediaAlunos;
+
+
+	
+PROCEDURE FindFormula; 
+PARAMETERS
+INTEGER x;
+REAL y;
+	
+FUNCTION media RETURNS REAL;
+
+TYPES Arraytype ARRAY INTEGER [5];
+VARIABLES 
+REAL SUM, AVERAGE;
+ArrayType Vet;
+
+BEGIN
+SET Sum = a+b+c;
+SET AVERAGE=SUM/3;
+SET Vet[a+b*7] = 10;
+RETURN (AVERAGE)
+END;
+
+
+BEGIN
+		WHILE X ! 0 DO
+		IF X<0 THEN SET y = 10 - 4.5 * x
+		ELSE SET y = 4.5 * -x + 10
+		ENDIF;
+		WRITE y;
+		READ x;
+		READ N1;READ N2;READ N3;
+		SET MediaAlunos = media
+		ENDWHILE
+END;
+	
+
+
+{main}		 
+
+BEGIN
+	READ a;
+	CALL FindFormula(a,b);
+	WRITE b		
+END.
